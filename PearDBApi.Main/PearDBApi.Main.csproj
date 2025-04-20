@@ -14,6 +14,7 @@
     <ProjectReference Include="..\PearDBApi.Application\PearDBApi.Application.csproj" />
     <ProjectReference Include="..\PearDBApi.Contracts\PearDBApi.Contracts.csproj" />
     <ProjectReference Include="..\PearDBApi.Infrastructure\PearDBApi.Infrastructure.csproj" />
+    <ProjectReference Include="..\PearDBApi.BackgroundServices\PearDBApi.BackgroundServices.csproj" />
   </ItemGroup>
 
 </Project>
