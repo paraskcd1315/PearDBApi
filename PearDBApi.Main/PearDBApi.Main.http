@@ -1,0 +1,6 @@
+@PearDBApi.Main_HostAddress = http://localhost:5231
+
+GET {{PearDBApi.Main_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
