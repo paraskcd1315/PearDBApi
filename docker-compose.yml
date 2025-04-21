@@ -1,0 +1,42 @@
+services:
+  peardb-api:
+    image: peardb-api
+    hostname: peardb-api
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:8080
+    environment:
+      - DB_CONNECTIONSTRING=${DB_CONNECTIONSTRING}
+    depends_on:
+      - sqlserver
+    networks:
+      - peardb_net
+
+  sqlserver:
+    image: mysql
+    hostname: sqlserver
+    restart: always
+    ports:
+      - 3306:3306
+    expose:
+      - 3306
+    environment:
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_USER=${DB_USERNAME}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - mysqldata:/var/lib/mysql
+    networks:
+      - peardb_net
+
+networks:
+  peardb_net:
+    external: true
+    name: peardb_net
+
+volumes:
+  mysqldata:
