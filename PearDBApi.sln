@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PearDBApi.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PearDBApi.Domain", "PearDBApi.Domain\PearDBApi.Domain.csproj", "{36D017E3-B5DF-4843-994E-9F11D8D9CC34}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PearDBApi.BackgroundServices", "PearDBApi.BackgroundServices\PearDBApi.BackgroundServices.csproj", "{166D6A6D-D639-4B20-9FCA-129F63DDB306}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{36D017E3-B5DF-4843-994E-9F11D8D9CC34}.Release|x64.Build.0 = Release|Any CPU
 		{36D017E3-B5DF-4843-994E-9F11D8D9CC34}.Release|x86.ActiveCfg = Release|Any CPU
 		{36D017E3-B5DF-4843-994E-9F11D8D9CC34}.Release|x86.Build.0 = Release|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Debug|x64.Build.0 = Debug|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Debug|x86.Build.0 = Debug|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Release|Any CPU.Build.0 = Release|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Release|x64.ActiveCfg = Release|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Release|x64.Build.0 = Release|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Release|x86.ActiveCfg = Release|Any CPU
+		{166D6A6D-D639-4B20-9FCA-129F63DDB306}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
