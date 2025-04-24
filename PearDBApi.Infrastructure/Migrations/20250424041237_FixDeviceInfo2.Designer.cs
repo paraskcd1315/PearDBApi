@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PearDBApi.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using PearDBApi.Infrastructure.Persistence;
 namespace PearDBApi.Infrastructure.Migrations
 {
     [DbContext(typeof(PearDBApiDbContext))]
-    partial class PearDBApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250424041237_FixDeviceInfo2")]
+    partial class FixDeviceInfo2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

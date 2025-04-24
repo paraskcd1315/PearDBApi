@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PearDBApi.Infrastructure.Persistence;
 
@@ -10,9 +11,11 @@ using PearDBApi.Infrastructure.Persistence;
 namespace PearDBApi.Infrastructure.Migrations
 {
     [DbContext(typeof(PearDBApiDbContext))]
-    partial class PearDBApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250424040009_SeparateDeviceInfo")]
+    partial class SeparateDeviceInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,6 +126,27 @@ namespace PearDBApi.Infrastructure.Migrations
 
                     b.HasIndex("DeviceId");
 
+                    b.HasIndex("DeviceInfoConnectivityId")
+                        .IsUnique();
+
+                    b.HasIndex("DeviceInfoCoresId")
+                        .IsUnique();
+
+                    b.HasIndex("DeviceInfoDisplayId")
+                        .IsUnique();
+
+                    b.HasIndex("DeviceInfoInputId")
+                        .IsUnique();
+
+                    b.HasIndex("DeviceInfoMemoryId")
+                        .IsUnique();
+
+                    b.HasIndex("DeviceInfoPowerId")
+                        .IsUnique();
+
+                    b.HasIndex("DeviceInfoSensorsId")
+                        .IsUnique();
+
                     b.ToTable("DeviceInfo", (string)null);
                 });
 
@@ -182,9 +206,6 @@ namespace PearDBApi.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeviceInfoId")
-                        .IsUnique();
-
                     b.ToTable("DeviceInfoConnectivity", (string)null);
                 });
 
@@ -221,9 +242,6 @@ namespace PearDBApi.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DeviceInfoId")
-                        .IsUnique();
 
                     b.ToTable("DeviceInfoCores", (string)null);
                 });
@@ -265,9 +283,6 @@ namespace PearDBApi.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeviceInfoId")
-                        .IsUnique();
-
                     b.ToTable("DeviceInfoDisplay", (string)null);
                 });
 
@@ -293,9 +308,6 @@ namespace PearDBApi.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DeviceInfoId")
-                        .IsUnique();
-
                     b.ToTable("DeviceInfoInput", (string)null);
                 });
 
@@ -314,9 +326,6 @@ namespace PearDBApi.Infrastructure.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DeviceInfoId")
-                        .IsUnique();
 
                     b.ToTable("DeviceInfoMemory", (string)null);
                 });
@@ -339,9 +348,6 @@ namespace PearDBApi.Infrastructure.Migrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DeviceInfoId")
-                        .IsUnique();
 
                     b.ToTable("DeviceInfoPower", (string)null);
                 });
@@ -367,9 +373,6 @@ namespace PearDBApi.Infrastructure.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("DeviceInfoId")
-                        .IsUnique();
 
                     b.ToTable("DeviceInfoSensors", (string)null);
                 });
@@ -441,7 +444,56 @@ namespace PearDBApi.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoConnectivity", "DeviceInfoConnectivity")
+                        .WithOne("DeviceInfo")
+                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfoConnectivityId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoCores", "DeviceInfoCores")
+                        .WithOne("DeviceInfo")
+                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfoCoresId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoDisplay", "DeviceInfoDisplay")
+                        .WithOne("DeviceInfo")
+                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfoDisplayId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoInput", "DeviceInfoInput")
+                        .WithOne("DeviceInfo")
+                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfoInputId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoMemory", "DeviceInfoMemory")
+                        .WithOne("DeviceInfo")
+                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfoMemoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoPower", "DeviceInfoPower")
+                        .WithOne("DeviceInfo")
+                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfoPowerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoSensors", "DeviceInfoSensors")
+                        .WithOne("DeviceInfo")
+                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfoSensorsId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.Navigation("Device");
+
+                    b.Navigation("DeviceInfoConnectivity");
+
+                    b.Navigation("DeviceInfoCores");
+
+                    b.Navigation("DeviceInfoDisplay");
+
+                    b.Navigation("DeviceInfoInput");
+
+                    b.Navigation("DeviceInfoMemory");
+
+                    b.Navigation("DeviceInfoPower");
+
+                    b.Navigation("DeviceInfoSensors");
                 });
 
             modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoAudio", b =>
@@ -449,83 +501,6 @@ namespace PearDBApi.Infrastructure.Migrations
                     b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
                         .WithOne("DeviceInfoAudio")
                         .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoAudio", "DeviceInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeviceInfo");
-                });
-
-            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoConnectivity", b =>
-                {
-                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
-                        .WithOne("DeviceInfoConnectivity")
-                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoConnectivity", "DeviceInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeviceInfo");
-                });
-
-            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoCores", b =>
-                {
-                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
-                        .WithOne("DeviceInfoCores")
-                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoCores", "DeviceInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeviceInfo");
-                });
-
-            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoDisplay", b =>
-                {
-                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
-                        .WithOne("DeviceInfoDisplay")
-                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoDisplay", "DeviceInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeviceInfo");
-                });
-
-            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoInput", b =>
-                {
-                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
-                        .WithOne("DeviceInfoInput")
-                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoInput", "DeviceInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeviceInfo");
-                });
-
-            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoMemory", b =>
-                {
-                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
-                        .WithOne("DeviceInfoMemory")
-                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoMemory", "DeviceInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeviceInfo");
-                });
-
-            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoPower", b =>
-                {
-                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
-                        .WithOne("DeviceInfoPower")
-                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoPower", "DeviceInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("DeviceInfo");
-                });
-
-            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoSensors", b =>
-                {
-                    b.HasOne("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", "DeviceInfo")
-                        .WithOne("DeviceInfoSensors")
-                        .HasForeignKey("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoSensors", "DeviceInfoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -549,20 +524,41 @@ namespace PearDBApi.Infrastructure.Migrations
             modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfo", b =>
                 {
                     b.Navigation("DeviceInfoAudio");
+                });
 
-                    b.Navigation("DeviceInfoConnectivity");
+            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoConnectivity", b =>
+                {
+                    b.Navigation("DeviceInfo");
+                });
 
-                    b.Navigation("DeviceInfoCores");
+            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoCores", b =>
+                {
+                    b.Navigation("DeviceInfo");
+                });
 
-                    b.Navigation("DeviceInfoDisplay");
+            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoDisplay", b =>
+                {
+                    b.Navigation("DeviceInfo");
+                });
 
-                    b.Navigation("DeviceInfoInput");
+            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoInput", b =>
+                {
+                    b.Navigation("DeviceInfo");
+                });
 
-                    b.Navigation("DeviceInfoMemory");
+            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoMemory", b =>
+                {
+                    b.Navigation("DeviceInfo");
+                });
 
-                    b.Navigation("DeviceInfoPower");
+            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoPower", b =>
+                {
+                    b.Navigation("DeviceInfo");
+                });
 
-                    b.Navigation("DeviceInfoSensors");
+            modelBuilder.Entity("PearDBApi.Domain.DeviceInfoAggregate.DeviceInfoPartials.DeviceInfoSensors", b =>
+                {
+                    b.Navigation("DeviceInfo");
                 });
 
             modelBuilder.Entity("PearDBApi.Domain.DeviceTypeAggregate.DeviceType", b =>

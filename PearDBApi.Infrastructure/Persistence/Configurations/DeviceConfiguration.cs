@@ -62,12 +62,7 @@ public class DeviceConfiguration : IEntityTypeConfiguration<Device>
 
     builder
       .HasMany(d => d.DeviceInfo)
-      .WithMany(di => di.Devices)
-      .UsingEntity(
-        "DeviceInfoDevice",
-        d => d.HasOne(typeof(DeviceInfo)).WithMany().HasForeignKey("DeviceInfoId").HasPrincipalKey(nameof(DeviceInfo.Id)),
-        di => di.HasOne(typeof(Device)).WithMany().HasForeignKey("DeviceId").HasPrincipalKey(nameof(Device.Id)),
-        ddi => ddi.HasKey("DeviceId")
-      );
+      .WithOne(di => di.Device)
+      .HasForeignKey(di => di.DeviceId);
   }
 }
